@@ -2316,6 +2316,11 @@ Phaser.Loader.prototype = {
                 case 'shader':
                     this.shader(file.key, file.url, file.overwrite);
                     break;
+				case 'spine':
+				    if (this.spine){
+					   this.spine(file.key, file.url, file.variants, file.fileType);
+				    }
+                    break;	
             }
         }
 
