@@ -196,7 +196,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this._markedToDelete = false;
 
     /**
-    * @property {boolean} _pendingStart - play() was called but waiting for playback. Audio Tag only. Cleared in update() once playback starts.
+    * @property {boolean} _pendingStart - play() was called but waiting for playback. Audio Tag only, and not used for sound markers. Cleared in update() once playback starts.
     * @private
     */
     this._pendingStart = false;
@@ -258,7 +258,7 @@ Phaser.Sound = function (game, key, volume, loop, connect)
     this.onDecoded = new Phaser.Signal();
 
     /**
-    * @property {Phaser.Signal} onPlay - The onPlay event is dispatched each time this sound is played or a looping marker is restarted. It passes one argument, this sound.
+    * @property {Phaser.Signal} onPlay - The onPlay event is dispatched each time this sound is played (but not looped). It passes one argument, this sound.
     */
     this.onPlay = new Phaser.Signal();
 
@@ -544,7 +544,7 @@ Phaser.Sound.prototype = {
                         else
                         {
                             this.onMarkerComplete.dispatch(this.currentMarker, this);
-                            this.play(this.currentMarker, 0, this.volume, true, true);
+                            this.play(this.currentMarker, 0, this.volume, true, true, false);
                         }
                     }
                     else
@@ -569,8 +569,7 @@ Phaser.Sound.prototype = {
                     //  Gets reset by the play function
                     this.isPlaying = false;
 
-                    this.play(this.currentMarker, 0, this.volume, true, true);
-                    this._pendingStart = false; // Need to set to false for looping sounds otherwise it keeps resetting.
+                    this.play(this.currentMarker, 0, this.volume, true, true, false);
                 }
                 else
                 {
@@ -603,13 +602,15 @@ Phaser.Sound.prototype = {
     * @param {number} [volume=1] - Volume of the sound you want to play. If none is given it will use the volume given to the Sound when it was created (which defaults to 1 if none was specified).
     * @param {boolean} [loop=false] - Loop when finished playing? If not using a marker / audio sprite the looping will be done via the WebAudio loop property, otherwise it's time based.
     * @param {boolean} [forceRestart=true] - If the sound is already playing you can set forceRestart to restart it from the beginning.
+    * @param {boolean} [onPlay=true] - Dispatch the `onPlay` signal.
     * @return {Phaser.Sound} This sound instance.
     */
-    play: function (marker, position, volume, loop, forceRestart)
+    play: function (marker, position, volume, loop, forceRestart, onPlay)
     {
 
         if (marker === undefined || marker === false || marker === null) { marker = ''; }
         if (forceRestart === undefined) { forceRestart = true; }
+        if (onPlay === undefined) { onPlay = true; }
 
         if (this.isPlaying && !this.allowMultiple && !forceRestart && !this.override)
         {
@@ -731,7 +732,11 @@ Phaser.Sound.prototype = {
                 this.startTime = this.game.time.time;
                 this.currentTime = 0;
                 this.stopTime = this.startTime + this.durationMS;
-                this.onPlay.dispatch(this);
+
+                if (onPlay)
+                {
+                    this.onPlay.dispatch(this);
+                }
             }
             else
             {
@@ -777,7 +782,7 @@ Phaser.Sound.prototype = {
                 this._sound.volume = this._volume * this._globalVolume;
             }
 
-            this._pendingStart = true;
+            this._pendingStart = !this.currentMarker;
             this.isPlaying = true;
             this.paused = false;
             this._tempPause = 0;
@@ -785,7 +790,10 @@ Phaser.Sound.prototype = {
             this.currentTime = 0;
             this.stopTime = this.startTime + this.durationMS;
 
-            this.onPlay.dispatch(this);
+            if (onPlay)
+            {
+                this.onPlay.dispatch(this);
+            }
         }
         else
         {
@@ -889,7 +897,7 @@ Phaser.Sound.prototype = {
             }
             else
             {
-                this._pendingStart = true;
+                this._pendingStart = !this.currentMarker;
                 this._sound.currentTime = this._tempPause;
                 this._tempPause = 0;
                 this._sound.play();

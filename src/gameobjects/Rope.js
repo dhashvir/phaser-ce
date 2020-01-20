@@ -8,9 +8,9 @@
 
 /**
 * A Rope is a Sprite that has a repeating texture.
-* 
+*
 * The texture will automatically wrap on the edges as it moves.
-* 
+*
 * Please note that Ropes cannot have an input handler.
 *
 * @class Phaser.Rope
@@ -194,7 +194,7 @@ Phaser.Rope.prototype.reset = function (x, y)
 
 };
 
-/*
+/**
 * Refreshes the rope texture and UV coordinates.
 *
 * @method Phaser.Rope#refresh
@@ -217,44 +217,21 @@ Phaser.Rope.prototype.refresh = function ()
 
     this.count -= 0.2;
 
-    uvs[0] = 0;
-    uvs[1] = 0;
-    uvs[2] = 0;
-    uvs[3] = 1;
-
-    colors[0] = 1;
-    colors[1] = 1;
-
-    indices[0] = 0;
-    indices[1] = 1;
-
     var total = points.length;
-    var index;
-    var amount;
+    var index = 0;
+    var amount = 0;
 
-    for (var i = 1; i < total; i++)
+    for (var i = 0; i < total; i++)
     {
         index = i * 4;
 
         // time to do some smart drawing!
         amount = i / (total - 1);
 
-        if (i % 2)
-        {
-            uvs[index] = amount;
-            uvs[index + 1] = 0;
-
-            uvs[index + 2] = amount;
-            uvs[index + 3] = 1;
-        }
-        else
-        {
-            uvs[index] = amount;
-            uvs[index + 1] = 0;
-
-            uvs[index + 2] = amount;
-            uvs[index + 3] = 1;
-        }
+        uvs[index] = amount;
+        uvs[index + 1] = 0;
+        uvs[index + 2] = amount;
+        uvs[index + 3] = 1;
 
         index = i * 2;
         colors[index] = 1;
@@ -267,7 +244,7 @@ Phaser.Rope.prototype.refresh = function ()
 
 };
 
-/*
+/**
 * Updates the Ropes transform ready for rendering.
 *
 * @method Phaser.Rope#updateTransform
@@ -293,16 +270,16 @@ Phaser.Rope.prototype.updateTransform = function ()
     var total = points.length;
     var point;
     var index;
-    var ratio;
     var perpLength;
     var num;
+    var halfHeight = this.texture.height / 2;
 
     for (var i = 0; i < total; i++)
     {
         point = points[i];
         index = i * 4;
 
-        if(i < points.length - 1)
+        if(i < total - 1)
         {
             nextPoint = points[i + 1];
         }
@@ -314,15 +291,8 @@ Phaser.Rope.prototype.updateTransform = function ()
         perp.y = -(nextPoint.x - lastPoint.x);
         perp.x = nextPoint.y - lastPoint.y;
 
-        ratio = (1 - (i / (total - 1))) * 10;
-
-        if (ratio > 1)
-        {
-            ratio = 1;
-        }
-
         perpLength = Math.sqrt((perp.x * perp.x) + (perp.y * perp.y));
-        num = this.texture.height / 2;
+        num = halfHeight;
         perp.x /= perpLength;
         perp.y /= perpLength;
 
@@ -341,7 +311,7 @@ Phaser.Rope.prototype.updateTransform = function ()
 
 };
 
-/*
+/**
 * Sets the Texture this Rope uses for rendering.
 *
 * @method Phaser.Rope#setTexture
@@ -355,7 +325,7 @@ Phaser.Rope.prototype.setTexture = function (texture)
 
 };
 
-/*
+/**
 * Renders the Rope to WebGL.
 *
 * @private
@@ -385,7 +355,7 @@ Phaser.Rope.prototype._renderWebGL = function (renderSession)
 
 };
 
-/*
+/**
 * Builds the Strip.
 *
 * @private
@@ -417,7 +387,7 @@ Phaser.Rope.prototype._initWebGL = function (renderSession)
 
 };
 
-/*
+/**
 * Renders the Strip to WebGL.
 *
 * @private
@@ -500,7 +470,7 @@ Phaser.Rope.prototype._renderStrip = function (renderSession)
 
 };
 
-/*
+/**
 * Renders the Strip to Canvas.
 *
 * @private
@@ -537,7 +507,7 @@ Phaser.Rope.prototype._renderCanvas = function (renderSession)
 
 };
 
-/*
+/**
 * Renders a Triangle Strip to Canvas.
 *
 * @private
@@ -563,7 +533,7 @@ Phaser.Rope.prototype._renderCanvasTriangleStrip = function (context)
 
 };
 
-/*
+/**
 * Renders a Triangle to Canvas.
 *
 * @private
@@ -592,7 +562,7 @@ Phaser.Rope.prototype._renderCanvasTriangles = function (context)
 
 };
 
-/*
+/**
 * Renders a Triangle to Canvas.
 *
 * @private
@@ -682,7 +652,7 @@ Phaser.Rope.prototype._renderCanvasDrawTriangle = function (context, vertices, u
 
 };
 
-/*
+/**
 * Renders a flat strip.
 *
 * @method Phaser.Rope#renderStripFlat
@@ -723,7 +693,7 @@ Phaser.Rope.prototype.renderStripFlat = function (strip)
 
 };
 
-/*
+/**
 * Returns the bounds of the mesh as a rectangle. The bounds calculation takes the worldTransform into account.
 *
 * @method Phaser.Rope#getBounds

@@ -2,9 +2,18 @@
 
 ## Unreleased
 
+### API Changes
+
+- Looped audio tag sounds no longer dispatch [onPlay](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#onPlay) when looping, only [onLoop](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#onLoop).
+- Looped Web Audio sound markers no longer dispatch [onPlay](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#onPlay) when looping, only [onLoop](https://photonstorm.github.io/phaser-ce/Phaser.Sound.html#onLoop).
+
 ### New Features
 
 - You can pass `powerPreference` in your [game config](https://photonstorm.github.io/phaser-ce/global.html#GameConfig) to set the `powerPreference` WebGL context attribute when creating the game. Possible values are `default`, `high-performance`, and `low-power` (#652).
+
+### Updates
+
+- [Rope.refresh](https://photonstorm.github.io/phaser-ce/Phaser.Rope.html#refresh) no longer has a pointless duplicated modulus check in the for-loop and iterates from zero, allowing the removal of several direct array assignments.
 
 ### Bug Fixes
 
@@ -13,7 +22,7 @@
 
 ### Thanks
 
-@rarecoil, @samme, @taoabc, @dhashvir
+@dhashvir, @photonstorm, @rarecoil, @samme, @taoabc
 
 ## Version 2.13.3 - 17 Sep 2019
 
