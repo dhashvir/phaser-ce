@@ -1,5 +1,40 @@
 # Change Log
 
+## Unreleased
+
+### New Features
+
+- Phaser.BitmapData#getBase64()
+- Phaser.BitmapData#getImage()
+- Phaser.Game#maxUpdates
+
+### Updates
+
+- Phaser.RenderTexture#getBase64() has `type` and `encoderOptions` arguments.
+- Phaser.RenderTexture#getImage() has `type`, `encoderOptions`, `onLoadCallback`, and `onErrorCallback` arguments.
+
+### Thanks
+
+@samme
+
+## Version 2.15.0 - 6 Mar 2020
+
+### API Changes
+
+* Removed Phaser.Component.Core.skipTypeChecks.
+
+### Updates
+
+* [Phaser.Component.Core.init()](https://photonstorm.github.io/phaser-ce/Phaser.Component.Core.html#_init) no longer checks types.
+
+### Bug Fixes
+
+* Fixed multitexture rendering of texture atlases (#644, #641).
+
+### Thanks
+
+@weedshaker
+
 ## Version 2.14.0 - 19 Jan 2020
 
 ### API Changes
@@ -199,11 +234,11 @@ If you're starting or stopping input handlers manually, you'll have to make some
 
   #### Which input handlers are running, depending on device capabilities
 
-  Device has                  | mspointer | touch   | mouse
-  ----------------------------|-----------|---------|-------
-  Pointer Events              | active    |         |
-  no Pointer Events; Touch    |           | active† | active
-  no Pointer Events; no Touch |           |         | active
+Device has                  | mspointer | touch   | mouse
+----------------------------|-----------|---------|-------
+Pointer Events              | active    |         |
+no Pointer Events; Touch    |           | active† | active
+no Pointer Events; no Touch |           |         | active
 
   (†) capture on
 

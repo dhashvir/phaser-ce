@@ -11,7 +11,7 @@
     "grunt-contrib-uglify": "^3.0.1",
     "grunt-shell": "^2.1.0",
     "jsdoc": "^3.5.4",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.13",
     "request": "^2.74.0"
   },
   "license": "MIT",
@@ -37,7 +37,7 @@
   },
   "main": "./template/publish.js",
   "dependencies": {
-    "moment": "^2.14.1",
+    "moment": "^2.19.3",
     "sanitize-html": "^1.13.0"
   }
 }

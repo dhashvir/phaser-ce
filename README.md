@@ -4,13 +4,13 @@
 
 Phaser CE is a fast, free, and fun open source HTML5 game framework. It uses a custom build of [Pixi.js](https://github.com/GoodBoyDigital/pixi.js/) for WebGL and Canvas rendering, and supports desktop and mobile web browsers. Games can be compiled to iOS, Android and native desktop apps via 3rd party tools. You can use JavaScript or TypeScript for development.
 
-Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](http://phaser.io/phaser3) is in active development.
+Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](http://phaser.io/phaser3) and [Phaser v4](https://github.com/phaserjs/phaser4) are in active development.
 
-The [current Phaser CE release is 2.14.0](https://github.com/photonstorm/phaser-ce/releases/tag/v2.14.0).
+The [current Phaser CE release is 2.15.0](https://github.com/photonstorm/phaser-ce/releases/tag/v2.15.0).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](https://stackoverflow.com/questions/tagged/phaser-framework)
-- **Code:** 700+ [Examples](http://phaser.io/examples) ([source][examples]), new [Phaser CE examples](https://codepen.io/collection/AMbZgY/)
+- **Code:** 700+ [Examples](https://samme.github.io/phaser-examples-mirror/ "Phaser CE Examples") ([source][examples]), new [Phaser CE examples](https://codepen.io/collection/AMbZgY/)
 - **Read:** Weekly [Phaser World](#newsletter) Newsletter
 - **Chat:** [Slack](http://phaser.io/community/slack) and [Discord](http://phaser.io/community/discord)
 - **Extend:** Phaser plugins - [Shop](http://phaser.io/shop/plugins), [GitHub](https://github.com/search?q=topic%3Aphaser-plugin&type=Repositories "Phaser plugins on GitHub"), [NPM](https://www.npmjs.com/browse/keyword/phaser-plugin "Phaser plugins on NPM")
@@ -88,16 +88,16 @@ Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack]
 [Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.14.0/build/phaser.js"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.15.0/build/phaser.js"></script>
 ```
 
 or the minified version:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.14.0"></script>
+<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.15.0"></script>
 ```
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.14.0/build/custom/) are available too.
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.15.0/build/custom/) are available too.
 
 <a name="getting-started"></a>
 
@@ -312,10 +312,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.14.0/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.14.0/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.14.0.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.14.0.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.15.0/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.15.0/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.15.0.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.15.0.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser
@@ -323,6 +323,6 @@ All rights reserved.
 [clone-ghmac]: github-mac://openRepo/https://github.com/photonstorm/phaser-ce
 [phaser]: https://github.com/photonstorm/phaser-ce
 [issues]: https://github.com/photonstorm/phaser-ce/issues
-[examples]: https://github.com/photonstorm/phaser-examples
+[examples]: https://github.com/samme/phaser-examples-mirror
 [contribute]: https://github.com/photonstorm/phaser-ce/blob/master/.github/CONTRIBUTING.md
 [forum]: https://phaser.discourse.group/
