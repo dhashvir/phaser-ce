@@ -814,7 +814,9 @@ Phaser.Cache.prototype = {
     addTextureAtlas: function (key, url, data, atlasData, format)
     {
         var scale = 1;
-        if (atlasData.meta){
+
+        
+        if (this.game.config.enableMetaScale && atlasData.meta){
             scale = Number(atlasData.meta.scale);
             scale = isNaN(scale) ? 1 : scale;
         }
@@ -823,8 +825,7 @@ Phaser.Cache.prototype = {
             key: key,
             url: url,
             data: data,
-            base: new PIXI.BaseTexture(data, null, this.game.resolution * scale),
-            meta: atlasData.meta
+            base: new PIXI.BaseTexture(data, null, this.game.resolution * scale)
         };
 
         if (format === Phaser.Loader.TEXTURE_ATLAS_XML_STARLING)
