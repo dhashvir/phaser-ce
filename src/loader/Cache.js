@@ -813,12 +813,18 @@ Phaser.Cache.prototype = {
     */
     addTextureAtlas: function (key, url, data, atlasData, format)
     {
-
+        var scale = 1;
+        if (atlasData.meta){
+            scale = Number(atlasData.meta.scale);
+            scale = isNaN(scale) ? 1 : scale;
+        }
+        
         var obj = {
             key: key,
             url: url,
             data: data,
-            base: new PIXI.BaseTexture(data, null, this.game.resolution)
+            base: new PIXI.BaseTexture(data, null, this.game.resolution * scale),
+            meta: atlasData.meta
         };
 
         if (format === Phaser.Loader.TEXTURE_ATLAS_XML_STARLING)
