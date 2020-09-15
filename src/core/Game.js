@@ -947,7 +947,9 @@ Phaser.Game.prototype = {
         {
             this.stage.smoothed = this.antialias;
 
-            Phaser.Canvas.addToDOM(this.canvas, this.parent, false);
+            if (!this.config.doNotAddToDom){
+                Phaser.Canvas.addToDOM(this.canvas, this.parent, false);
+            }
             Phaser.Canvas.setTouchAction(this.canvas);
         }
 
