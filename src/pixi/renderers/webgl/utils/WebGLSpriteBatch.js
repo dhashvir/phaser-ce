@@ -17,10 +17,9 @@
  */
 PIXI.WebGLSpriteBatch = function (game)
 {
-
     /**
-    * @property {Phaser.Game} game - A reference to the currently running game.
-    */
+     * @property {Phaser.Game} game - A reference to the currently running game.
+     */
     this.game = game;
 
     /**
@@ -36,15 +35,19 @@ PIXI.WebGLSpriteBatch = function (game)
      */
     this.size = 2000; // Math.pow(2, 16) /  this.vertSize;
 
-    // the total number of bytes in our batch
-    // Including texture index:
-    // position + uv + color + textureIndex
-    // vec2 + vec2 + (char * 4) + float
+    /*
+     * the total number of bytes in our batch
+     * Including texture index:
+     * position + uv + color + textureIndex
+     * vec2 + vec2 + (char * 4) + float
+     */
     this.vertexSize = (4 * 2) + (4 * 2) + (4) + (4);
     var numVerts = this.vertexSize * this.size * 4;
 
-    // this.size * 4 * 4 * this.vertSize;
-    // the total number of indices in our batch
+    /*
+     * this.size * 4 * 4 * this.vertSize;
+     * the total number of indices in our batch
+     */
     var numIndices = this.size * 6;
 
     /**
@@ -253,6 +256,15 @@ PIXI.WebGLSpriteBatch.prototype.end = function ()
 PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 {
     var texture = sprite.texture;
+    var baseTexture = texture.baseTexture;
+    var gl = this.gl;
+    if (PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+    {
+        this.flush();
+        gl.activeTexture(gl.TEXTURE0 + baseTexture.textureIndex);
+        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+        PIXI.WebGLRenderer.textureArray[baseTexture.textureIndex] = baseTexture;
+    }
 
     //  They provided an alternative rendering matrix, so use it
     var wt = sprite.worldTransform;
@@ -329,8 +341,10 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
         tx = wt.c * ch + tx;
         ty = wt.d * ch + ty;
 
-        // Rotate matrix by 90 degrees
-        // We use precalculated values for sine and cosine of rad(90)
+        /*
+         * Rotate matrix by 90 degrees
+         * We use precalculated values for sine and cosine of rad(90)
+         */
         a = a0 * 6.123233995736766e-17 + -c0;
         b = b0 * 6.123233995736766e-17 + -d0;
         c = a0 + c0 * 6.123233995736766e-17;
@@ -425,7 +439,16 @@ PIXI.WebGLSpriteBatch.prototype.render = function (sprite, matrix)
 PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
 {
     var texture = sprite.tilingTexture;
+    var baseTexture = texture.baseTexture;
+    var gl = this.gl;
     var textureIndex = sprite.texture.baseTexture.textureIndex;
+    if (PIXI.WebGLRenderer.textureArray[textureIndex] != baseTexture) // eslint-disable-line eqeqeq
+    {
+        this.flush();
+        gl.activeTexture(gl.TEXTURE0 + textureIndex);
+        gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id]);
+        PIXI.WebGLRenderer.textureArray[textureIndex] = baseTexture;
+    }
 
     // check texture..
     if (this.currentBatchSize >= this.size)
@@ -445,11 +468,15 @@ PIXI.WebGLSpriteBatch.prototype.renderTilingSprite = function (sprite)
     var w = texture.baseTexture.width;
     var h = texture.baseTexture.height;
 
-    // var w = sprite._frame.sourceSizeW;
-    // var h = sprite._frame.sourceSizeH;
+    /*
+     * var w = sprite._frame.sourceSizeW;
+     * var h = sprite._frame.sourceSizeH;
+     */
 
-    // w = 16;
-    // h = 16;
+    /*
+     * w = 16;
+     * h = 16;
+     */
 
     sprite.tilePosition.x %= w * sprite.tileScaleOffset.x;
     sprite.tilePosition.y %= h * sprite.tileScaleOffset.y;
@@ -631,7 +658,6 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
 
     for (var i = 0, j = this.currentBatchSize; i < j; i++)
     {
-
         sprite = this.sprites[i];
 
         if (sprite.tilingTexture)
@@ -657,7 +683,7 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
         }
 
         //
-        if ((currentBaseTexture !== nextTexture && !skip) ||
+        if (/* (currentBaseTexture !== nextTexture && !skip) || */
             blendSwap ||
             shaderSwap)
         {
@@ -698,8 +724,10 @@ PIXI.WebGLSpriteBatch.prototype.flush = function ()
                     shader.syncUniforms();
                 }
 
-                // both these only need to be set if they are changing..
-                // set the projection
+                /*
+                 * both these only need to be set if they are changing..
+                 * set the projection
+                 */
                 var projection = this.renderSession.projection;
                 gl.uniform2f(shader.projectionVector, projection.x, projection.y);
 

@@ -37,7 +37,8 @@
  * @param {number} [style.maxLines=0] - The maximum number of lines to be shown for wrapped text.
  * @param {number} [style.tabs=0] - The size (in pixels) of the tabs, for when text includes tab characters. 0 disables. Can be an array of varying tab sizes, one per tab stop.
  */
-Phaser.Text = function(game, x, y, text, style) {
+Phaser.Text = function (game, x, y, text, style)
+{
     x = x || 0;
     y = y || 0;
 
@@ -135,7 +136,9 @@ Phaser.Text = function(game, x, y, text, style) {
      */
     this.splitRegExp = /(?:\r\n|\r|\n)/;
 
-    /** The maximum number of characters that can be set.
+
+    /**
+     * The maximum number of characters that can be set.
      * @property {number} characterLimitSize
      */
     this.characterLimitSize = -1;
@@ -216,12 +219,10 @@ Phaser.Text.prototype.constructor = Phaser.Text;
  * @method Phaser.Text#preUpdate
  * @protected
  */
-Phaser.Text.prototype.preUpdate = function() {
-    if (
-        !this.preUpdatePhysics() ||
-        !this.preUpdateLifeSpan() ||
-        !this.preUpdateInWorld()
-    ) {
+Phaser.Text.prototype.preUpdate = function ()
+{
+    if (!this.preUpdatePhysics() || !this.preUpdateLifeSpan() || !this.preUpdateInWorld())
+    {
         return false;
     }
 
@@ -234,7 +235,10 @@ Phaser.Text.prototype.preUpdate = function() {
  * @method Phaser.Text#update
  * @protected
  */
-Phaser.Text.prototype.update = function() {};
+Phaser.Text.prototype.update = function ()
+{
+
+};
 
 /**
  * Destroy this Text object, removing it from the group it belongs to.
@@ -242,7 +246,8 @@ Phaser.Text.prototype.update = function() {};
  * @method Phaser.Text#destroy
  * @param {boolean} [destroyChildren=true] - Should every child of this object have its destroy method called?
  */
-Phaser.Text.prototype.destroy = function(destroyChildren) {
+Phaser.Text.prototype.destroy = function (destroyChildren)
+{
     this.texture.destroy(true);
 
     Phaser.Component.Destroy.prototype.destroy.call(this, destroyChildren);
@@ -263,32 +268,14 @@ Phaser.Text.prototype.destroy = function(destroyChildren) {
  * @param {boolean} [shadowFill=true] - Apply the drop shadow to the Text fill (if set).
  * @return {Phaser.Text} This Text instance.
  */
-Phaser.Text.prototype.setShadow = function(
-    x,
-    y,
-    color,
-    blur,
-    shadowStroke,
-    shadowFill
-) {
-    if (x === undefined) {
-        x = 0;
-    }
-    if (y === undefined) {
-        y = 0;
-    }
-    if (color === undefined) {
-        color = "rgba(0, 0, 0, 1)";
-    }
-    if (blur === undefined) {
-        blur = 0;
-    }
-    if (shadowStroke === undefined) {
-        shadowStroke = true;
-    }
-    if (shadowFill === undefined) {
-        shadowFill = true;
-    }
+Phaser.Text.prototype.setShadow = function (x, y, color, blur, shadowStroke, shadowFill)
+{
+    if (x === undefined) { x = 0; }
+    if (y === undefined) { y = 0; }
+    if (color === undefined) { color = 'rgba(0, 0, 0, 1)'; }
+    if (blur === undefined) { blur = 0; }
+    if (shadowStroke === undefined) { shadowStroke = true; }
+    if (shadowFill === undefined) { shadowFill = true; }
 
     this.style.shadowOffsetX = x;
     this.style.shadowOffsetY = y;
@@ -325,10 +312,9 @@ Phaser.Text.prototype.setShadow = function(
  * @param {boolean} [update=false] - Immediately update the Text object after setting the new style? Or wait for the next frame.
  * @return {Phaser.Text} This Text instance.
  */
-Phaser.Text.prototype.setStyle = function(style, update) {
-    if (update === undefined) {
-        update = false;
-    }
+Phaser.Text.prototype.setStyle = function (style, update)
+{
+    if (update === undefined) { update = false; }
 
     var newStyle = Object.assign({}, style);
     newStyle.font = style.font || "bold 20pt Arial";
@@ -390,7 +376,8 @@ Phaser.Text.prototype.setStyle = function(style, update) {
  * @method Phaser.Text#updateText
  * @private
  */
-Phaser.Text.prototype.updateText = function() {
+Phaser.Text.prototype.updateText = function ()
+{
     this.texture.baseTexture.resolution = this._res;
 
     this.context.font = this.style.font;
@@ -641,7 +628,8 @@ Phaser.Text.prototype.updateText = function() {
  * @param {integer} y - The y position to start rendering from.
  * @param {boolean} fill - If true uses fillText, if false uses strokeText.
  */
-Phaser.Text.prototype.renderTabLine = function(line, x, y, fill) {
+Phaser.Text.prototype.renderTabLine = function (line, x, y, fill)
+{
     var text = line.split(/(?:\t)/);
     var tabs = this.style.tabs;
     var snap = 0;
@@ -687,8 +675,10 @@ Phaser.Text.prototype.renderTabLine = function(line, x, y, fill) {
  * @method Phaser.Text#updateShadow
  * @param {boolean} state - If true the shadow will be set to the Style values, otherwise it will be set to zero.
  */
-Phaser.Text.prototype.updateShadow = function(state) {
-    if (state) {
+Phaser.Text.prototype.updateShadow = function (state)
+{
+    if (state)
+    {
         this.context.shadowOffsetX = this.style.shadowOffsetX;
         this.context.shadowOffsetY = this.style.shadowOffsetY;
         this.context.shadowColor = this.style.shadowColor;
@@ -709,7 +699,8 @@ Phaser.Text.prototype.updateShadow = function(state) {
  * @param {string} line - The line of text to measure.
  * @return {integer} length of the line.
  */
-Phaser.Text.prototype.measureLine = function(line) {
+Phaser.Text.prototype.measureLine = function (line)
+{
     var lineLength = 0;
 
     for (var i = 0; i < line.length; i++) {
@@ -759,8 +750,10 @@ Phaser.Text.prototype.measureLine = function(line) {
  * @method Phaser.Text#updateLine
  * @private
  */
-Phaser.Text.prototype.updateLine = function(line, x, y) {
-    for (var i = 0; i < line.length; i++) {
+Phaser.Text.prototype.updateLine = function (line, x, y)
+{
+    for (var i = 0; i < line.length; i++)
+    {
         var letter = line[i];
 
         if (this.fontWeights.length > 0 || this.fontStyles.length > 0) {
@@ -807,7 +800,8 @@ Phaser.Text.prototype.updateLine = function(line, x, y) {
  * @method Phaser.Text#clearColors
  * @return {Phaser.Text} This Text instance.
  */
-Phaser.Text.prototype.clearColors = function() {
+Phaser.Text.prototype.clearColors = function ()
+{
     this.colors = [];
     this.strokeColors = [];
     this.dirty = true;
@@ -821,7 +815,8 @@ Phaser.Text.prototype.clearColors = function() {
  * @method Phaser.Text#clearFontValues
  * @return {Phaser.Text} This Text instance.
  */
-Phaser.Text.prototype.clearFontValues = function() {
+Phaser.Text.prototype.clearFontValues = function ()
+{
     this.fontStyles = [];
     this.fontWeights = [];
     this.dirty = true;
@@ -844,7 +839,8 @@ Phaser.Text.prototype.clearFontValues = function() {
  * @param {number} position - The index of the character in the string to start applying this color value from.
  * @return {Phaser.Text} This Text instance.
  */
-Phaser.Text.prototype.addColor = function(color, position) {
+Phaser.Text.prototype.addColor = function (color, position)
+{
     this.colors[position] = color;
     this.dirty = true;
 
@@ -868,7 +864,8 @@ Phaser.Text.prototype.addColor = function(color, position) {
  * @param {number} position - The index of the character in the string to start applying this color value from.
  * @return {Phaser.Text} This Text instance.
  */
-Phaser.Text.prototype.addStrokeColor = function(color, position) {
+Phaser.Text.prototype.addStrokeColor = function (color, position)
+{
     this.strokeColors[position] = color;
     this.dirty = true;
 
@@ -890,7 +887,8 @@ Phaser.Text.prototype.addStrokeColor = function(color, position) {
  * @param {number} position - The index of the character in the string to start applying this font style value from.
  * @return {Phaser.Text} This Text instance.
  */
-Phaser.Text.prototype.addFontStyle = function(style, position) {
+Phaser.Text.prototype.addFontStyle = function (style, position)
+{
     this.fontStyles[position] = style;
     this.dirty = true;
 
@@ -912,7 +910,8 @@ Phaser.Text.prototype.addFontStyle = function(style, position) {
  * @param {number} position - The index of the character in the string to start applying this font weight value from.
  * @return {Phaser.Text} This Text instance.
  */
-Phaser.Text.prototype.addFontWeight = function(weight, position) {
+Phaser.Text.prototype.addFontWeight = function (weight, position)
+{
     this.fontWeights[position] = weight;
     this.dirty = true;
 
@@ -930,7 +929,8 @@ Phaser.Text.prototype.addFontWeight = function(weight, position) {
  * @param {string} text - The text for which the wrapping will be calculated.
  * @return {array} An array of strings with the pieces of wrapped text.
  */
-Phaser.Text.prototype.precalculateWordWrap = function(text) {
+Phaser.Text.prototype.precalculateWordWrap = function (text)
+{
     this.texture.baseTexture.resolution = this._res;
     this.context.font = this.style.font;
 
@@ -946,8 +946,10 @@ Phaser.Text.prototype.precalculateWordWrap = function(text) {
  * @param {string} text - The text to perform word wrap detection against.
  * @private
  */
-Phaser.Text.prototype.runWordWrap = function(text) {
-    if (this.useAdvancedWrap) {
+Phaser.Text.prototype.runWordWrap = function (text)
+{
+    if (this.useAdvancedWrap)
+    {
         return this.advancedWordWrap(text);
     } else {
         return this.basicWordWrap(text);
@@ -964,15 +966,20 @@ Phaser.Text.prototype.runWordWrap = function(text) {
  * @param {string} text - The text to perform word wrap detection against.
  * @private
  */
-Phaser.Text.prototype.advancedWordWrap = function(text) {
+Phaser.Text.prototype.advancedWordWrap = function (text)
+{
     var context = this.context;
     var wordWrapWidth = this.style.wordWrapWidth;
 
     var output = "";
 
-    // (1) condense whitespace
-    // (2) split into lines
-    var lines = text.replace(/ +/gi, " ").split(/\r?\n/gi);
+    /*
+     * (1) condense whitespace
+     * (2) split into lines
+     */
+    var lines = text
+        .replace(/ +/gi, ' ')
+        .split(/\r?\n/gi);
 
     var linesCount = lines.length;
 
@@ -983,8 +990,10 @@ Phaser.Text.prototype.advancedWordWrap = function(text) {
         // trim whitespace
         line = line.replace(/^ *|\s*$/gi, "");
 
-        // if entire line is less than wordWrapWidth
-        // append the entire line and exit early
+        /*
+         * if entire line is less than wordWrapWidth
+         * append the entire line and exit early
+         */
         var lineWidth = context.measureText(line).width;
 
         if (lineWidth < wordWrapWidth) {
@@ -1018,12 +1027,13 @@ Phaser.Text.prototype.advancedWordWrap = function(text) {
                         }
                     }
 
-                    // if wordWrapWidth is too small for even a single
-                    // letter, shame user failure with a fatal error
-                    if (!newWord.length) {
-                        throw new Error(
-                            "This text's wordWrapWidth setting is less than a single character!"
-                        );
+                    /*
+                     * if wordWrapWidth is too small for even a single
+                     * letter, shame user failure with a fatal error
+                     */
+                    if (!newWord.length)
+                    {
+                        throw new Error('This text\'s wordWrapWidth setting is less than a single character!');
                     }
 
                     // replace current word in array with remainder
@@ -1076,11 +1086,13 @@ Phaser.Text.prototype.advancedWordWrap = function(text) {
  * @param {string} text - The text to perform word wrap detection against.
  * @private
  */
-Phaser.Text.prototype.basicWordWrap = function(text) {
-    var result = "";
-    var lines = text.split("\n");
+Phaser.Text.prototype.basicWordWrap = function (text)
+{
+    var result = '';
+    var lines = text.split('\n');
 
-    for (var i = 0; i < lines.length; i++) {
+    for (var i = 0; i < lines.length; i++)
+    {
         var spaceLeft = this.style.wordWrapWidth;
         var words = lines[i].split(" ");
 
@@ -1117,7 +1129,8 @@ Phaser.Text.prototype.basicWordWrap = function(text) {
  * @private
  * @param {object} components - Font components.
  */
-Phaser.Text.prototype.updateFont = function(components) {
+Phaser.Text.prototype.updateFont = function (components)
+{
     var font = this.componentsToFont(components);
 
     if (this.style.font !== font) {
@@ -1137,18 +1150,19 @@ Phaser.Text.prototype.updateFont = function(components) {
  * @private
  * @param {string} font - a CSS font string
  */
-Phaser.Text.prototype.fontToComponents = function(font) {
-    // The format is specified in http://www.w3.org/TR/CSS2/fonts.html#font-shorthand:
-    // style - normal | italic | oblique | inherit
-    // variant - normal | small-caps | inherit
-    // weight - normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | inherit
-    // size - xx-small | x-small | small | medium | large | x-large | xx-large,
-    //        larger | smaller
-    //        {number} (em | ex | ch | rem | vh | vw | vmin | vmax | px | mm | cm | in | pt | pc | %)
-    // font-family - rest (but identifiers or quoted with comma separation)
-    var m = font.match(
-        /^\s*(?:\b(normal|italic|oblique|inherit)?\b)\s*(?:\b(normal|small-caps|inherit)?\b)\s*(?:\b(normal|bold|bolder|lighter|100|200|300|400|500|600|700|800|900|inherit)?\b)\s*(?:\b(xx-small|x-small|small|medium|large|x-large|xx-large|larger|smaller|0|\d*(?:[.]\d*)?(?:%|[a-z]{2,5}))?\b)\s*(.*)\s*$/
-    );
+Phaser.Text.prototype.fontToComponents = function (font)
+{
+    /*
+     * The format is specified in http://www.w3.org/TR/CSS2/fonts.html#font-shorthand:
+     * style - normal | italic | oblique | inherit
+     * variant - normal | small-caps | inherit
+     * weight - normal | bold | bolder | lighter | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | inherit
+     * size - xx-small | x-small | small | medium | large | x-large | xx-large,
+     *        larger | smaller
+     *        {number} (em | ex | ch | rem | vh | vw | vmin | vmax | px | mm | cm | in | pt | pc | %)
+     * font-family - rest (but identifiers or quoted with comma separation)
+     */
+    var m = font.match(/^\s*(?:\b(normal|italic|oblique|inherit)?\b)\s*(?:\b(normal|small-caps|inherit)?\b)\s*(?:\b(normal|bold|bolder|lighter|100|200|300|400|500|600|700|800|900|inherit)?\b)\s*(?:\b(xx-small|x-small|small|medium|large|x-large|xx-large|larger|smaller|0|\d*(?:[.]\d*)?(?:%|[a-z]{2,5}))?\b)\s*(.*)\s*$/);
 
     if (m) {
         var family = m[5].trim();
@@ -1185,7 +1199,8 @@ Phaser.Text.prototype.fontToComponents = function(font) {
  * @private
  * @param {object} components - Font components.
  */
-Phaser.Text.prototype.componentsToFont = function(components) {
+Phaser.Text.prototype.componentsToFont = function (components)
+{
     var parts = [];
     var v;
 
@@ -1219,7 +1234,7 @@ Phaser.Text.prototype.componentsToFont = function(components) {
         parts.push(components.font);
     }
 
-    return parts.join(" ");
+    return parts.join(' ');
 };
 
 /**
@@ -1237,14 +1252,14 @@ Phaser.Text.prototype.componentsToFont = function(components) {
  * @param {boolean} [immediate=false] - Update the texture used by this Text object immediately (true) or automatically during the next render loop (false).
  * @return {Phaser.Text} This Text instance.
  */
-Phaser.Text.prototype.setText = function(text, immediate) {
-    if (immediate === undefined) {
-        immediate = false;
-    }
+Phaser.Text.prototype.setText = function (text, immediate)
+{
+    if (immediate === undefined) { immediate = false; }
 
-    text = text.toString() || "";
+    text = text.toString() || '';
 
-    if (text === this._text) {
+    if (text === this._text)
+    {
         return this;
     }
 
@@ -1280,8 +1295,10 @@ Phaser.Text.prototype.setText = function(text, immediate) {
  * @param {array} list - The array of data to convert into a string.
  * @return {Phaser.Text} This Text instance.
  */
-Phaser.Text.prototype.parseList = function(list) {
-    if (!Array.isArray(list)) {
+Phaser.Text.prototype.parseList = function (list)
+{
+    if (!Array.isArray(list))
+    {
         return this;
     } else {
         var s = "";
@@ -1340,8 +1357,10 @@ Phaser.Text.prototype.parseList = function(list) {
  * @param {number} [height] - The height of the Text Bounds region.
  * @return {Phaser.Text} This Text instance.
  */
-Phaser.Text.prototype.setTextBounds = function(x, y, width, height) {
-    if (x === undefined) {
+Phaser.Text.prototype.setTextBounds = function (x, y, width, height)
+{
+    if (x === undefined)
+    {
         this.textBounds = null;
     } else {
         if (!this.textBounds) {
@@ -1366,7 +1385,8 @@ Phaser.Text.prototype.setTextBounds = function(x, y, width, height) {
  * @method Phaser.Text#updateTexture
  * @private
  */
-Phaser.Text.prototype.updateTexture = function() {
+Phaser.Text.prototype.updateTexture = function ()
+{
     var base = this.texture.baseTexture;
     var crop = this.texture.crop;
     var frame = this.texture.frame;
@@ -1429,8 +1449,10 @@ Phaser.Text.prototype.updateTexture = function() {
  * @private
  * @param {RenderSession} renderSession - The Render Session to render the Text on.
  */
-Phaser.Text.prototype._renderWebGL = function(renderSession) {
-    if (this.dirty) {
+Phaser.Text.prototype._renderWebGL = function (renderSession)
+{
+    if (this.dirty)
+    {
         this.updateText();
         this.dirty = false;
     }
@@ -1445,8 +1467,10 @@ Phaser.Text.prototype._renderWebGL = function(renderSession) {
  * @private
  * @param {RenderSession} renderSession - The Render Session to render the Text on.
  */
-Phaser.Text.prototype._renderCanvas = function(renderSession) {
-    if (this.dirty) {
+Phaser.Text.prototype._renderCanvas = function (renderSession)
+{
+    if (this.dirty)
+    {
         this.updateText();
         this.dirty = false;
     }
@@ -1461,7 +1485,8 @@ Phaser.Text.prototype._renderCanvas = function(renderSession) {
  * @private
  * @param {object} fontStyle
  */
-Phaser.Text.prototype.determineFontProperties = function(fontStyle) {
+Phaser.Text.prototype.determineFontProperties = function (fontStyle)
+{
     var properties = Phaser.Text.fontPropertiesCache[fontStyle];
     var measureText = this.testString || "|MÉq";
 
@@ -1567,8 +1592,10 @@ Phaser.Text.prototype.determineFontProperties = function(fontStyle) {
  * @param {Phaser.Matrix} matrix - The transformation matrix of the Text.
  * @return {Phaser.Rectangle} The framing rectangle
  */
-Phaser.Text.prototype.getBounds = function(matrix) {
-    if (this.dirty) {
+Phaser.Text.prototype.getBounds = function (matrix)
+{
+    if (this.dirty)
+    {
         this.updateText();
         this.dirty = false;
     }
@@ -1584,8 +1611,9 @@ Phaser.Text.prototype.getBounds = function(matrix) {
  * @param {number} [characterLimit] - The x coordinate of the Text Bounds region.
  * @param {string} [suffix] - The suffix to append to the truncated text.
  */
-Phaser.Text.prototype.setCharacterLimit = function(characterLimit, suffix) {
-    this.characterLimitSuffix = suffix === undefined ? "" : suffix;
+Phaser.Text.prototype.setCharacterLimit = function (characterLimit, suffix)
+{
+    this.characterLimitSuffix = (suffix === undefined) ? '' : suffix;
     this.characterLimitSize = characterLimit;
 
     this.updateText();
@@ -1599,14 +1627,18 @@ Phaser.Text.prototype.setCharacterLimit = function(characterLimit, suffix) {
  * @name Phaser.Text#text
  * @property {string} text
  */
-Object.defineProperty(Phaser.Text.prototype, "text", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'text', {
+
+    get: function ()
+    {
         return this._text;
     },
 
-    set: function(value) {
-        if (value !== this._text) {
-            this._text = value.toString() || "";
+    set: function (value)
+    {
+        if (value !== this._text)
+        {
+            this._text = value.toString() || '';
             this.dirty = true;
 
             if (this.parent) {
@@ -1627,8 +1659,10 @@ Object.defineProperty(Phaser.Text.prototype, "text", {
  * @name Phaser.Text#cssFont
  * @property {string} cssFont
  */
-Object.defineProperty(Phaser.Text.prototype, "cssFont", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'cssFont', {
+
+    get: function ()
+    {
         return this.componentsToFont(this._fontComponents);
     },
 
@@ -1650,13 +1684,16 @@ Object.defineProperty(Phaser.Text.prototype, "cssFont", {
  * @name Phaser.Text#font
  * @property {string} font
  */
-Object.defineProperty(Phaser.Text.prototype, "font", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'font', {
+
+    get: function ()
+    {
         return this._fontComponents.fontFamily;
     },
 
-    set: function(value) {
-        value = value || "Arial";
+    set: function (value)
+    {
+        value = value || 'Arial';
         value = value.trim();
 
         // If it looks like the value should be quoted, but isn't, then quote it.
@@ -1683,8 +1720,10 @@ Object.defineProperty(Phaser.Text.prototype, "font", {
  * @name Phaser.Text#fontSize
  * @property {number|string} fontSize
  */
-Object.defineProperty(Phaser.Text.prototype, "fontSize", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'fontSize', {
+
+    get: function ()
+    {
         var size = this._fontComponents.fontSize;
 
         if (size && /(?:^0$|px$)/.exec(size)) {
@@ -1694,11 +1733,13 @@ Object.defineProperty(Phaser.Text.prototype, "fontSize", {
         }
     },
 
-    set: function(value) {
-        value = value || "0";
+    set: function (value)
+    {
+        value = value || '0';
 
-        if (typeof value === "number") {
-            value = value + "px";
+        if (typeof value === 'number')
+        {
+            value = value + 'px';
         }
 
         this._fontComponents.fontSize = value;
@@ -1711,13 +1752,16 @@ Object.defineProperty(Phaser.Text.prototype, "fontSize", {
  * @name Phaser.Text#fontWeight
  * @property {string} fontWeight
  */
-Object.defineProperty(Phaser.Text.prototype, "fontWeight", {
-    get: function() {
-        return this._fontComponents.fontWeight || "normal";
+Object.defineProperty(Phaser.Text.prototype, 'fontWeight', {
+
+    get: function ()
+    {
+        return this._fontComponents.fontWeight || 'normal';
     },
 
-    set: function(value) {
-        value = value || "normal";
+    set: function (value)
+    {
+        value = value || 'normal';
         this._fontComponents.fontWeight = value;
         this.updateFont(this._fontComponents);
     }
@@ -1728,13 +1772,16 @@ Object.defineProperty(Phaser.Text.prototype, "fontWeight", {
  * @name Phaser.Text#fontStyle
  * @property {string} fontStyle
  */
-Object.defineProperty(Phaser.Text.prototype, "fontStyle", {
-    get: function() {
-        return this._fontComponents.fontStyle || "normal";
+Object.defineProperty(Phaser.Text.prototype, 'fontStyle', {
+
+    get: function ()
+    {
+        return this._fontComponents.fontStyle || 'normal';
     },
 
-    set: function(value) {
-        value = value || "normal";
+    set: function (value)
+    {
+        value = value || 'normal';
         this._fontComponents.fontStyle = value;
         this.updateFont(this._fontComponents);
     }
@@ -1745,13 +1792,16 @@ Object.defineProperty(Phaser.Text.prototype, "fontStyle", {
  * @name Phaser.Text#fontVariant
  * @property {string} fontVariant
  */
-Object.defineProperty(Phaser.Text.prototype, "fontVariant", {
-    get: function() {
-        return this._fontComponents.fontVariant || "normal";
+Object.defineProperty(Phaser.Text.prototype, 'fontVariant', {
+
+    get: function ()
+    {
+        return this._fontComponents.fontVariant || 'normal';
     },
 
-    set: function(value) {
-        value = value || "normal";
+    set: function (value)
+    {
+        value = value || 'normal';
         this._fontComponents.fontVariant = value;
         this.updateFont(this._fontComponents);
     }
@@ -1761,13 +1811,17 @@ Object.defineProperty(Phaser.Text.prototype, "fontVariant", {
  * @name Phaser.Text#fill
  * @property {object} fill - A canvas fillstyle that will be used on the text eg 'red', '#00FF00'.
  */
-Object.defineProperty(Phaser.Text.prototype, "fill", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'fill', {
+
+    get: function ()
+    {
         return this.style.fill;
     },
 
-    set: function(value) {
-        if (value !== this.style.fill) {
+    set: function (value)
+    {
+        if (value !== this.style.fill)
+        {
             this.style.fill = value;
             this.dirty = true;
         }
@@ -1781,12 +1835,15 @@ Object.defineProperty(Phaser.Text.prototype, "fill", {
  * @name Phaser.Text#align
  * @property {string} align
  */
-Object.defineProperty(Phaser.Text.prototype, "align", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'align', {
+
+    get: function ()
+    {
         return this.style.align;
     },
 
-    set: function(value) {
+    set: function (value)
+    {
         value = value.toLowerCase();
         if (value !== this.style.align) {
             this.style.align = value;
@@ -1801,13 +1858,17 @@ Object.defineProperty(Phaser.Text.prototype, "align", {
  * @name Phaser.Text#resolution
  * @property {integer} resolution
  */
-Object.defineProperty(Phaser.Text.prototype, "resolution", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'resolution', {
+
+    get: function ()
+    {
         return this._res;
     },
 
-    set: function(value) {
-        if (value !== this._res) {
+    set: function (value)
+    {
+        if (value !== this._res)
+        {
             this._res = value;
             this.dirty = true;
         }
@@ -1823,13 +1884,17 @@ Object.defineProperty(Phaser.Text.prototype, "resolution", {
  * @name Phaser.Text#tabs
  * @property {integer|array} tabs
  */
-Object.defineProperty(Phaser.Text.prototype, "tabs", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'tabs', {
+
+    get: function ()
+    {
         return this.style.tabs;
     },
 
-    set: function(value) {
-        if (value !== this.style.tabs) {
+    set: function (value)
+    {
+        if (value !== this.style.tabs)
+        {
             this.style.tabs = value;
             this.dirty = true;
         }
@@ -1841,12 +1906,15 @@ Object.defineProperty(Phaser.Text.prototype, "tabs", {
  * @name Phaser.Text#boundsAlignH
  * @property {string} boundsAlignH
  */
-Object.defineProperty(Phaser.Text.prototype, "boundsAlignH", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'boundsAlignH', {
+
+    get: function ()
+    {
         return this.style.boundsAlignH;
     },
 
-    set: function(value) {
+    set: function (value)
+    {
         value = value.toLowerCase();
         if (value !== this.style.boundsAlignH) {
             this.style.boundsAlignH = value;
@@ -1860,12 +1928,15 @@ Object.defineProperty(Phaser.Text.prototype, "boundsAlignH", {
  * @name Phaser.Text#boundsAlignV
  * @property {string} boundsAlignV
  */
-Object.defineProperty(Phaser.Text.prototype, "boundsAlignV", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'boundsAlignV', {
+
+    get: function ()
+    {
         return this.style.boundsAlignV;
     },
 
-    set: function(value) {
+    set: function (value)
+    {
         value = value.toLowerCase();
         if (value !== this.style.boundsAlignV) {
             this.style.boundsAlignV = value;
@@ -1878,13 +1949,17 @@ Object.defineProperty(Phaser.Text.prototype, "boundsAlignV", {
  * @name Phaser.Text#stroke
  * @property {string} stroke - A canvas fillstyle that will be used on the text stroke eg 'blue', '#FCFF00'.
  */
-Object.defineProperty(Phaser.Text.prototype, "stroke", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'stroke', {
+
+    get: function ()
+    {
         return this.style.stroke;
     },
 
-    set: function(value) {
-        if (value !== this.style.stroke) {
+    set: function (value)
+    {
+        if (value !== this.style.stroke)
+        {
             this.style.stroke = value;
             this.dirty = true;
         }
@@ -1895,13 +1970,17 @@ Object.defineProperty(Phaser.Text.prototype, "stroke", {
  * @name Phaser.Text#strokeThickness
  * @property {number} strokeThickness - A number that represents the thickness of the stroke. Default is 0 (no stroke)
  */
-Object.defineProperty(Phaser.Text.prototype, "strokeThickness", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'strokeThickness', {
+
+    get: function ()
+    {
         return this.style.strokeThickness;
     },
 
-    set: function(value) {
-        if (value !== this.style.strokeThickness) {
+    set: function (value)
+    {
+        if (value !== this.style.strokeThickness)
+        {
             this.style.strokeThickness = Number(value);
             this.dirty = true;
         }
@@ -1912,13 +1991,17 @@ Object.defineProperty(Phaser.Text.prototype, "strokeThickness", {
  * @name Phaser.Text#wordWrap
  * @property {boolean} wordWrap - Indicates if word wrap should be used.
  */
-Object.defineProperty(Phaser.Text.prototype, "wordWrap", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'wordWrap', {
+
+    get: function ()
+    {
         return this.style.wordWrap;
     },
 
-    set: function(value) {
-        if (value !== this.style.wordWrap) {
+    set: function (value)
+    {
+        if (value !== this.style.wordWrap)
+        {
             this.style.wordWrap = value;
             this.dirty = true;
         }
@@ -1929,13 +2012,17 @@ Object.defineProperty(Phaser.Text.prototype, "wordWrap", {
  * @name Phaser.Text#wordWrapWidth
  * @property {number} wordWrapWidth - The width at which text will wrap.
  */
-Object.defineProperty(Phaser.Text.prototype, "wordWrapWidth", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'wordWrapWidth', {
+
+    get: function ()
+    {
         return this.style.wordWrapWidth;
     },
 
-    set: function(value) {
-        if (value !== this.style.wordWrapWidth) {
+    set: function (value)
+    {
+        if (value !== this.style.wordWrapWidth)
+        {
             this.style.wordWrapWidth = value;
             this.dirty = true;
         }
@@ -1946,13 +2033,17 @@ Object.defineProperty(Phaser.Text.prototype, "wordWrapWidth", {
  * @name Phaser.Text#lineSpacing
  * @property {number} lineSpacing - Additional spacing (in pixels) between each line of text if multi-line.
  */
-Object.defineProperty(Phaser.Text.prototype, "lineSpacing", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'lineSpacing', {
+
+    get: function ()
+    {
         return this._lineSpacing;
     },
 
-    set: function(value) {
-        if (value !== this._lineSpacing) {
+    set: function (value)
+    {
+        if (value !== this._lineSpacing)
+        {
             this._lineSpacing = parseFloat(value);
             this.dirty = true;
 
@@ -1967,13 +2058,17 @@ Object.defineProperty(Phaser.Text.prototype, "lineSpacing", {
  * @name Phaser.Text#shadowOffsetX
  * @property {number} shadowOffsetX - The shadowOffsetX value in pixels. This is how far offset horizontally the shadow effect will be.
  */
-Object.defineProperty(Phaser.Text.prototype, "shadowOffsetX", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'shadowOffsetX', {
+
+    get: function ()
+    {
         return this.style.shadowOffsetX;
     },
 
-    set: function(value) {
-        if (value !== this.style.shadowOffsetX) {
+    set: function (value)
+    {
+        if (value !== this.style.shadowOffsetX)
+        {
             this.style.shadowOffsetX = value;
             this.dirty = true;
         }
@@ -1984,13 +2079,17 @@ Object.defineProperty(Phaser.Text.prototype, "shadowOffsetX", {
  * @name Phaser.Text#shadowOffsetY
  * @property {number} shadowOffsetY - The shadowOffsetY value in pixels. This is how far offset vertically the shadow effect will be.
  */
-Object.defineProperty(Phaser.Text.prototype, "shadowOffsetY", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'shadowOffsetY', {
+
+    get: function ()
+    {
         return this.style.shadowOffsetY;
     },
 
-    set: function(value) {
-        if (value !== this.style.shadowOffsetY) {
+    set: function (value)
+    {
+        if (value !== this.style.shadowOffsetY)
+        {
             this.style.shadowOffsetY = value;
             this.dirty = true;
         }
@@ -2001,13 +2100,17 @@ Object.defineProperty(Phaser.Text.prototype, "shadowOffsetY", {
  * @name Phaser.Text#shadowColor
  * @property {string} shadowColor - The color of the shadow, as given in CSS rgba format. Set the alpha component to 0 to disable the shadow.
  */
-Object.defineProperty(Phaser.Text.prototype, "shadowColor", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'shadowColor', {
+
+    get: function ()
+    {
         return this.style.shadowColor;
     },
 
-    set: function(value) {
-        if (value !== this.style.shadowColor) {
+    set: function (value)
+    {
+        if (value !== this.style.shadowColor)
+        {
             this.style.shadowColor = value;
             this.dirty = true;
         }
@@ -2018,13 +2121,17 @@ Object.defineProperty(Phaser.Text.prototype, "shadowColor", {
  * @name Phaser.Text#shadowBlur
  * @property {number} shadowBlur - The shadowBlur value. Make the shadow softer by applying a Gaussian blur to it. A number from 0 (no blur) up to approx. 10 (depending on scene).
  */
-Object.defineProperty(Phaser.Text.prototype, "shadowBlur", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'shadowBlur', {
+
+    get: function ()
+    {
         return this.style.shadowBlur;
     },
 
-    set: function(value) {
-        if (value !== this.style.shadowBlur) {
+    set: function (value)
+    {
+        if (value !== this.style.shadowBlur)
+        {
             this.style.shadowBlur = value;
             this.dirty = true;
         }
@@ -2035,13 +2142,17 @@ Object.defineProperty(Phaser.Text.prototype, "shadowBlur", {
  * @name Phaser.Text#shadowStroke
  * @property {boolean} shadowStroke - Sets if the drop shadow is applied to the Text stroke.
  */
-Object.defineProperty(Phaser.Text.prototype, "shadowStroke", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'shadowStroke', {
+
+    get: function ()
+    {
         return this.style.shadowStroke;
     },
 
-    set: function(value) {
-        if (value !== this.style.shadowStroke) {
+    set: function (value)
+    {
+        if (value !== this.style.shadowStroke)
+        {
             this.style.shadowStroke = value;
             this.dirty = true;
         }
@@ -2052,13 +2163,17 @@ Object.defineProperty(Phaser.Text.prototype, "shadowStroke", {
  * @name Phaser.Text#shadowFill
  * @property {boolean} shadowFill - Sets if the drop shadow is applied to the Text fill.
  */
-Object.defineProperty(Phaser.Text.prototype, "shadowFill", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'shadowFill', {
+
+    get: function ()
+    {
         return this.style.shadowFill;
     },
 
-    set: function(value) {
-        if (value !== this.style.shadowFill) {
+    set: function (value)
+    {
+        if (value !== this.style.shadowFill)
+        {
             this.style.shadowFill = value;
             this.dirty = true;
         }
@@ -2070,9 +2185,12 @@ Object.defineProperty(Phaser.Text.prototype, "shadowFill", {
  * @name Phaser.Text#width
  * @property {number} width - The width of the Text. Setting this will modify the scale to achieve the value requested.
  */
-Object.defineProperty(Phaser.Text.prototype, "width", {
-    get: function() {
-        if (this.dirty) {
+Object.defineProperty(Phaser.Text.prototype, 'width', {
+
+    get: function ()
+    {
+        if (this.dirty)
+        {
             this.updateText();
             this.dirty = false;
         }
@@ -2080,7 +2198,8 @@ Object.defineProperty(Phaser.Text.prototype, "width", {
         return this.scale.x * (this.texture.frame.width / this.resolution);
     },
 
-    set: function(value) {
+    set: function (value)
+    {
         this.scale.x = value / this.texture.frame.width;
         this._width = value;
     }
@@ -2091,9 +2210,12 @@ Object.defineProperty(Phaser.Text.prototype, "width", {
  * @name Phaser.Text#height
  * @property {number} height - The height of the Text. Setting this will modify the scale to achieve the value requested.
  */
-Object.defineProperty(Phaser.Text.prototype, "height", {
-    get: function() {
-        if (this.dirty) {
+Object.defineProperty(Phaser.Text.prototype, 'height', {
+
+    get: function ()
+    {
+        if (this.dirty)
+        {
             this.updateText();
             this.dirty = false;
         }
@@ -2101,7 +2223,8 @@ Object.defineProperty(Phaser.Text.prototype, "height", {
         return this.scale.y * (this.texture.frame.height / this.resolution);
     },
 
-    set: function(value) {
+    set: function (value)
+    {
         this.scale.y = value / this.texture.frame.height;
         this._height = value;
     }
@@ -2112,12 +2235,15 @@ Object.defineProperty(Phaser.Text.prototype, "height", {
  * @name Phaser.Text#testString
  * @default '|MÉq'
  */
-Object.defineProperty(Phaser.Text.prototype, "testString", {
-    get: function() {
+Object.defineProperty(Phaser.Text.prototype, 'testString', {
+
+    get: function ()
+    {
         return this._testString;
     },
 
-    set: function(value) {
+    set: function (value)
+    {
         this._testString = value;
         this.updateText();
     }

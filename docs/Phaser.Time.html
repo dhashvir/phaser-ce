@@ -6,7 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Phaser CE Class: Time</title>
-	<link rel="stylesheet" href="styles/site.phaser.css?2020011913">
+	<link rel="stylesheet" href="styles/site.phaser.css?2020060111">
 </head>
 
 <body>
@@ -141,16 +141,19 @@ and also handles the standard Timer pool.</p>
 <p>To create a general timed event, use the master <a href="Phaser.Timer.html">Phaser.Timer</a> accessible through events.</p>
 <p>There are different <em>types</em> of time in Phaser:</p>
 <ul>
-<li><p><strong><em>Game time</em></strong> always runs at the speed of time in real life.</p>
+<li>
+<p><em><strong>Game time</strong></em> always runs at the speed of time in real life.</p>
 <p>Unlike wall-clock time, <em>game time stops when Phaser is paused</em>.</p>
 <p>Game time is used for <a href="Phaser.Timer.html">timer events</a>.</p>
 </li>
-<li><p><strong><em>Physics time</em></strong> represents the amount of time given to physics calculations.</p>
+<li>
+<p><em><strong>Physics time</strong></em> represents the amount of time given to physics calculations.</p>
 <p><em>When <a href="Phaser.Time.html#slowMotion">slowMotion</a> is in effect physics time runs slower than game time.</em>
 Like game time, physics time stops when Phaser is paused.</p>
 <p>Physics time is used for physics calculations and <a href="Phaser.Tween.html">tweens</a>.</p>
 </li>
-<li><p><a href="https://en.wikipedia.org/wiki/Wall-clock_time"><strong><em>Wall-clock time</em></strong></a> represents the duration between two events in real life time.</p>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Wall-clock_time"><em><strong>Wall-clock time</strong></em></a> represents the duration between two events in real life time.</p>
 <p>This time is independent of Phaser and always progresses, regardless of if Phaser is paused.</p>
 </li>
 </ul>
@@ -248,7 +251,7 @@ Like game time, physics time stops when Phaser is paused.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L38" title="Time on line 38 of src/time/Time.js">src/time/Time.js line 38</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L38" title="Time on line 38 of src/time/Time.js">src/time/Time.js line 38</a>
     
 
 	
@@ -353,7 +356,7 @@ Like game time, physics time stops when Phaser is paused.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L173" title="advancedTiming on line 173 of src/time/Time.js">src/time/Time.js line 173</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L174" title="advancedTiming on line 174 of src/time/Time.js">src/time/Time.js line 174</a>
     
 
 	
@@ -439,7 +442,7 @@ Like game time, physics time stops when Phaser is paused.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L691" title="desiredFps on line 691 of src/time/Time.js">src/time/Time.js line 691</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L667" title="desiredFps on line 667 of src/time/Time.js">src/time/Time.js line 667</a>
     
 
 	
@@ -516,7 +519,7 @@ Like game time, physics time stops when Phaser is paused.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L129" title="desiredFpsMult on line 129 of src/time/Time.js">src/time/Time.js line 129</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L130" title="desiredFpsMult on line 130 of src/time/Time.js">src/time/Time.js line 130</a>
     
 
 	
@@ -545,8 +548,8 @@ Like game time, physics time stops when Phaser is paused.</p>
         <p>Elapsed time since the last time update, in milliseconds, based on <code>now</code>.</p>
 <p>This value <em>may</em> include time that the game is paused/inactive.</p>
 <p>While the game is active, this will be similar to (1000 / <a href="Phaser.Time.html#fps">fps</a>).</p>
-<p><em>Note:</em> This is updated only once per game loop - even if multiple logic update steps are done.
-Use physicsTime as a basis of game/logic calculations instead.</p>
+<p>This is updated only once per game loop, even if multiple logic update steps are done.
+Use <a href="Phaser.Time.html#physicsElapsed">physicsElapsed</a> as a basis of game/logic calculations instead.</p>
     </div>
     
 
@@ -597,7 +600,7 @@ Use physicsTime as a basis of game/logic calculations instead.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L89" title="elapsed on line 89 of src/time/Time.js">src/time/Time.js line 89</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L88" title="elapsed on line 88 of src/time/Time.js">src/time/Time.js line 88</a>
     
 
 	
@@ -632,8 +635,9 @@ Use physicsTime as a basis of game/logic calculations instead.</p>
     <div class="description members-description">
         <p>The time in ms since the last time update, in milliseconds, based on <code>time</code>.</p>
 <p>This value is corrected for game pauses and will be &quot;about zero&quot; after a game is resumed.</p>
-<p><em>Note:</em> This is updated once per game loop - even if multiple logic update steps are done.
-Use physicsTime as a basis of game/logic calculations instead.</p>
+<p>This is updated at each logic update, possibly more than once per game loop.
+If multiple logic update steps are done, the <code>elapsedMS</code> values will differ greatly.</p>
+<p>Use <a href="Phaser.Time.html#physicsElapsedMS">physicsElapsedMS</a> as a basis of game/logic calculations instead.</p>
     </div>
     
 
@@ -684,7 +688,7 @@ Use physicsTime as a basis of game/logic calculations instead.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L102" title="elapsedMS on line 102 of src/time/Time.js">src/time/Time.js line 102</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L103" title="elapsedMS on line 103 of src/time/Time.js">src/time/Time.js line 103</a>
     
 
 	
@@ -761,7 +765,7 @@ Use physicsTime as a basis of game/logic calculations instead.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L289" title="events on line 289 of src/time/Time.js">src/time/Time.js line 289</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L290" title="events on line 290 of src/time/Time.js">src/time/Time.js line 290</a>
     
 
 	
@@ -839,7 +843,7 @@ Use physicsTime as a basis of game/logic calculations instead.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L209" title="fps on line 209 of src/time/Time.js">src/time/Time.js line 209</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L210" title="fps on line 210 of src/time/Time.js">src/time/Time.js line 210</a>
     
 
 	
@@ -918,7 +922,7 @@ This value can be manually reset.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L245" title="fpsMax on line 245 of src/time/Time.js">src/time/Time.js line 245</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L246" title="fpsMax on line 246 of src/time/Time.js">src/time/Time.js line 246</a>
     
 
 	
@@ -997,7 +1001,7 @@ This value can be manually reset.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L236" title="fpsMin on line 236 of src/time/Time.js">src/time/Time.js line 236</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L237" title="fpsMin on line 237 of src/time/Time.js">src/time/Time.js line 237</a>
     
 
 	
@@ -1075,7 +1079,7 @@ This value can be manually reset.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L182" title="frames on line 182 of src/time/Time.js">src/time/Time.js line 182</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L183" title="frames on line 183 of src/time/Time.js">src/time/Time.js line 183</a>
     
 
 	
@@ -1152,7 +1156,7 @@ This value can be manually reset.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L45" title="game on line 45 of src/time/Time.js">src/time/Time.js line 45</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L44" title="game on line 44 of src/time/Time.js">src/time/Time.js line 44</a>
     
 
 	
@@ -1231,7 +1235,7 @@ This value can be manually reset.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L264" title="msMax on line 264 of src/time/Time.js">src/time/Time.js line 264</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L265" title="msMax on line 265 of src/time/Time.js">src/time/Time.js line 265</a>
     
 
 	
@@ -1317,7 +1321,7 @@ This value can be manually reset.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L255" title="msMin on line 255 of src/time/Time.js">src/time/Time.js line 255</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L256" title="msMin on line 256 of src/time/Time.js">src/time/Time.js line 256</a>
     
 
 	
@@ -1398,7 +1402,7 @@ the value can only be relied upon within a particular game instance.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L73" title="now on line 73 of src/time/Time.js">src/time/Time.js line 73</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L72" title="now on line 72 of src/time/Time.js">src/time/Time.js line 72</a>
     
 
 	
@@ -1476,7 +1480,7 @@ the value can only be relied upon within a particular game instance.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L271" title="pauseDuration on line 271 of src/time/Time.js">src/time/Time.js line 271</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L272" title="pauseDuration on line 272 of src/time/Time.js">src/time/Time.js line 272</a>
     
 
 	
@@ -1557,7 +1561,7 @@ is unable to consistently maintain the desired FPS.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L115" title="physicsElapsed on line 115 of src/time/Time.js">src/time/Time.js line 115</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L116" title="physicsElapsed on line 116 of src/time/Time.js">src/time/Time.js line 116</a>
     
 
 	
@@ -1634,7 +1638,7 @@ is unable to consistently maintain the desired FPS.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L122" title="physicsElapsedMS on line 122 of src/time/Time.js">src/time/Time.js line 122</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L123" title="physicsElapsedMS on line 123 of src/time/Time.js">src/time/Time.js line 123</a>
     
 
 	
@@ -1711,7 +1715,7 @@ is unable to consistently maintain the desired FPS.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L59" title="prevTime on line 59 of src/time/Time.js">src/time/Time.js line 59</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L58" title="prevTime on line 58 of src/time/Time.js">src/time/Time.js line 58</a>
     
 
 	
@@ -1789,7 +1793,7 @@ is unable to consistently maintain the desired FPS.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L200" title="renders on line 200 of src/time/Time.js">src/time/Time.js line 200</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L201" title="renders on line 201 of src/time/Time.js">src/time/Time.js line 201</a>
     
 
 	
@@ -1867,7 +1871,7 @@ is unable to consistently maintain the desired FPS.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L227" title="rps on line 227 of src/time/Time.js">src/time/Time.js line 227</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L228" title="rps on line 228 of src/time/Time.js">src/time/Time.js line 228</a>
     
 
 	
@@ -1957,7 +1961,7 @@ is unable to consistently maintain the desired FPS.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L166" title="slowMotion on line 166 of src/time/Time.js">src/time/Time.js line 166</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L167" title="slowMotion on line 167 of src/time/Time.js">src/time/Time.js line 167</a>
     
 
 	
@@ -2037,7 +2041,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L152" title="suggestedFps on line 152 of src/time/Time.js">src/time/Time.js line 152</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L153" title="suggestedFps on line 153 of src/time/Time.js">src/time/Time.js line 153</a>
     
 
 	
@@ -2114,7 +2118,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L52" title="time on line 52 of src/time/Time.js">src/time/Time.js line 52</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L51" title="time on line 51 of src/time/Time.js">src/time/Time.js line 51</a>
     
 
 	
@@ -2191,7 +2195,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L283" title="timeExpected on line 283 of src/time/Time.js">src/time/Time.js line 283</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L284" title="timeExpected on line 284 of src/time/Time.js">src/time/Time.js line 284</a>
     
 
 	
@@ -2268,7 +2272,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L277" title="timeToCall on line 277 of src/time/Time.js">src/time/Time.js line 277</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L278" title="timeToCall on line 278 of src/time/Time.js">src/time/Time.js line 278</a>
     
 
 	
@@ -2346,7 +2350,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L191" title="updates on line 191 of src/time/Time.js">src/time/Time.js line 191</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L192" title="updates on line 192 of src/time/Time.js">src/time/Time.js line 192</a>
     
 
 	
@@ -2424,7 +2428,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L218" title="ups on line 218 of src/time/Time.js">src/time/Time.js line 218</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L219" title="ups on line 219 of src/time/Time.js">src/time/Time.js line 219</a>
     
 
 	
@@ -2552,7 +2556,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L353" title="add on line 353 of src/time/Time.js">src/time/Time.js line 353</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L351" title="add on line 351 of src/time/Time.js">src/time/Time.js line 351</a>
     
 
 	
@@ -2660,7 +2664,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L337" title="boot on line 337 of src/time/Time.js">src/time/Time.js line 337</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L337" title="boot on line 337 of src/time/Time.js">src/time/Time.js line 337</a>
     
 
 	
@@ -2814,7 +2818,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L369" title="create on line 369 of src/time/Time.js">src/time/Time.js line 369</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L365" title="create on line 365 of src/time/Time.js">src/time/Time.js line 365</a>
     
 
 	
@@ -2972,7 +2976,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L664" title="elapsedSecondsSince on line 664 of src/time/Time.js">src/time/Time.js line 664</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L642" title="elapsedSecondsSince on line 642 of src/time/Time.js">src/time/Time.js line 642</a>
     
 
 	
@@ -3130,7 +3134,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L652" title="elapsedSince on line 652 of src/time/Time.js">src/time/Time.js line 652</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L630" title="elapsedSince on line 630 of src/time/Time.js">src/time/Time.js line 630</a>
     
 
 	
@@ -3238,7 +3242,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L408" title="refresh on line 408 of src/time/Time.js">src/time/Time.js line 408</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L400" title="refresh on line 400 of src/time/Time.js">src/time/Time.js line 400</a>
     
 
 	
@@ -3322,7 +3326,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L389" title="removeAll on line 389 of src/time/Time.js">src/time/Time.js line 389</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L383" title="removeAll on line 383 of src/time/Time.js">src/time/Time.js line 383</a>
     
 
 	
@@ -3406,7 +3410,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L676" title="reset on line 676 of src/time/Time.js">src/time/Time.js line 676</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L654" title="reset on line 654 of src/time/Time.js">src/time/Time.js line 654</a>
     
 
 	
@@ -3490,7 +3494,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L641" title="totalElapsedSeconds on line 641 of src/time/Time.js">src/time/Time.js line 641</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L619" title="totalElapsedSeconds on line 619 of src/time/Time.js">src/time/Time.js line 619</a>
     
 
 	
@@ -3648,7 +3652,7 @@ it's set to the same value as desiredFps.</p>
 	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
 	<dd class="tag-source">
     
-      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.14.0/src/time/Time.js#L427" title="update on line 427 of src/time/Time.js">src/time/Time.js line 427</a>
+      <a href="https://github.com/photonstorm/phaser-ce/blob/v2.16.0/src/time/Time.js#L417" title="update on line 417 of src/time/Time.js">src/time/Time.js line 417</a>
     
 
 	
@@ -3691,9 +3695,9 @@ it's set to the same value as desiredFps.</p>
 
 
 <p class="package-signature">
-  phaser-ce@2.14.0
+  phaser-ce@2.16.0
   is on
-  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.14.0">GitHub</a>
+  <a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.16.0">GitHub</a>
   and
   <a href="https://www.npmjs.com/package/phaser-ce">NPM</a>
 </p>
@@ -3708,9 +3712,9 @@ it's set to the same value as desiredFps.</p>
 
 
 <p class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
-		on 2020-01-19
+		on 2020-06-01
 	
 	using <a href="https://github.com/photonstorm/phaser-ce/tree/master/resources/docstrap-master">Tomorrow</a>.
 </p>
@@ -3739,7 +3743,7 @@ it's set to the same value as desiredFps.</p>
 	</div>
 </div>
 
-<script defer src="scripts/bundle.js?2020011913"></script>
+<script defer src="scripts/bundle.js?2020060111"></script>
 
 
 
