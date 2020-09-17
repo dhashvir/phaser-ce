@@ -4036,10 +4036,11 @@ declare module Phaser {
         shakeIntensity: number;
 
         /**
-        * This signal is dispatched when the camera fade effect completes.
-        * When the fade effect completes you will be left with the screen black (or whatever
-        * color you faded to). In order to reset this call `Camera.resetFX`. This is called
-        * automatically when you change State.
+        * This signal is dispatched when the camera fade effect (fade in or fade out) completes.
+        * You can look at the value of `Camera.fx.alpha` to determine which effect it was.
+        * When the fade out effect completes `Camera.fx.alpha` is 1 and you will be left with the screen black (or whatever
+        * color you faded to). In order to reset this call `Camera.resetFX`. `Camera.resetFX` is called automatically when you change State.
+        * When the fade in effect completes, `Camera.fx.alpha` is 0 and there is no visible camera fill.
         */
         onFadeComplete: Phaser.Signal;
 
@@ -4105,7 +4106,7 @@ declare module Phaser {
         checkBounds(): void;
 
         /**
-        * This creates a camera fade effect. It works by filling the game with the
+        * This creates a camera fade out effect. It works by filling the game with the
         * color specified, over the duration given, ending with a solid fill.
         * 
         * You can use this for things such as transitioning to a new scene.
@@ -7988,6 +7989,7 @@ declare module Phaser {
 
         /**
         * Should the game loop force a logic update, regardless of the delta timer? You can toggle it on the fly.
+        * Default: true
         */
         forceSingleUpdate: boolean;
 
@@ -8115,6 +8117,7 @@ declare module Phaser {
 
         /**
         * When the WebGL renderer is used, hint to the browser which GPU to use.
+        * Default: default
         */
         powerPreference: string;
 
@@ -16659,22 +16662,10 @@ declare module Phaser {
     * 
     * Phaser does not yet support {@link http://www.w3.org/TR/pointerevents/#chorded-button-interactions chorded button interactions}.
     * 
-    * You can disable Phaser's use of Pointer Events by any of three ways:
+    * You can disable Phaser's use of Pointer Events:
     * 
     * ```javascript
     * new Phaser.Game({ mspointer: false });
-    * ```
-    * 
-    * ```javascript
-    * // **Before** `new Phaser.Game(…)`:
-    * Phaser.Device.onInitialized.add(function () {
-    *     this.mspointer = false;
-    * });
-    * ```
-    * 
-    * ```javascript
-    * // Once, in the earliest State `init` or `create` callback (e.g., Boot):
-    * this.input.mspointer.stop();
     * ```
     */
     class MSPointer {
@@ -16690,22 +16681,10 @@ declare module Phaser {
         * 
         * Phaser does not yet support {@link http://www.w3.org/TR/pointerevents/#chorded-button-interactions chorded button interactions}.
         * 
-        * You can disable Phaser's use of Pointer Events by any of three ways:
+        * You can disable Phaser's use of Pointer Events:
         * 
         * ```javascript
         * new Phaser.Game({ mspointer: false });
-        * ```
-        * 
-        * ```javascript
-        * // **Before** `new Phaser.Game(…)`:
-        * Phaser.Device.onInitialized.add(function () {
-        *     this.mspointer = false;
-        * });
-        * ```
-        * 
-        * ```javascript
-        * // Once, in the earliest State `init` or `create` callback (e.g., Boot):
-        * this.input.mspointer.stop();
         * ```
         * 
         * @param game A reference to the currently running game.
@@ -16767,17 +16746,17 @@ declare module Phaser {
         mouseUpCallback: (event: MSPointerEvent) => void;
 
         /**
-        * A callback that can be fired on a pointerdown (MSPointerDown) event.
+        * A callback that can be fired on a pointerdown event.
         */
         pointerDownCallback: (event: MSPointerEvent) => void;
 
         /**
-        * A callback that can be fired on a pointermove (MSPointerMove) event.
+        * A callback that can be fired on a pointermove event.
         */
         pointerMoveCallback: (event: MSPointerEvent) => void;
 
         /**
-        * A callback that can be fired on a pointerup (MSPointerUp) event.
+        * A callback that can be fired on a pointerup event.
         */
         pointerUpCallback: (event: MSPointerEvent) => void;
 
@@ -24657,7 +24636,7 @@ declare module Phaser {
         * @param right
         * @param bottom
         * @param left
-        * @return - An array containing four lines (if no arguments were given), or null.
+        * @return An array containing four lines (if no arguments were given), or null.
         */
         sides(top?: Phaser.Line, right?: Phaser.Line, bottom?: Phaser.Line, left?: Phaser.Line): Phaser.Line[];
 
@@ -29161,7 +29140,7 @@ declare module Phaser {
         * 
         * It is dispatched only when the new state is started, which isn't usually at the same time as StateManager.start
         * is called because state swapping is done in sync with the game loop. It is dispatched *before* any of the new states
-        * methods (such as preload and create) are called, and *after* the previous states shutdown method has been run.
+        * methods (init, preload, create, etc.) are called, and *after* the previous state's shutdown method has been run.
         * 
         * The callback you specify is sent two parameters: the string based key of the new state,
         * and the second parameter is the string based key of the old / previous state.
@@ -30830,8 +30809,9 @@ declare module Phaser {
         replace(source: number, dest: number, x: number, y: number, width: number, height: number, layer?: any): void;
 
         /**
-        * Searches the entire map layer for the first tile matching the given index, then returns that Phaser.Tile object.
-        * If no match is found it returns null.
+        * Searches the entire map layer for the first tile or all tiles matching the given index.
+        * When `all` is false (the default), it returns a Phaser.Tile object or null.
+        * When `all` is true, it returns an array Phaser.Tile objects, or none (an empty array).
         * The search starts from the top-left tile and continues horizontally until it hits the end of the row, then it drops down to the next column.
         * If the reverse boolean is true, it scans starting from the bottom-right corner traveling up to the top-left.
         * 
@@ -30839,7 +30819,8 @@ declare module Phaser {
         * @param skip The number of times to skip a matching tile before returning.
         * @param reverse If true it will scan the layer in reverse, starting at the bottom-right. Otherwise it scans from the top-left.
         * @param layer The layer to get the tile from.
-        * @return The first (or n skipped) tile with the matching index.
+        * @param all If true it will scan the layer in reverse, starting at the bottom-right. Otherwise it scans from the top-left.
+        * @return A matching tile, or null (when `all` is false); or an array of zero or more tiles (when `all` is true).
         */
         searchTileIndex(index: number, skip?: number, reverse?: boolean, layer?: any): Phaser.Tile;
 
@@ -32151,8 +32132,8 @@ declare module Phaser {
         * 
         * While the game is active, this will be similar to (1000 / {@link Phaser.Time#fps fps}).
         * 
-        * _Note:_ This is updated only once per game loop - even if multiple logic update steps are done.
-        * Use {@link Phaser.Timer#physicsTime physicsTime} as a basis of game/logic calculations instead.
+        * This is updated only once per game loop, even if multiple logic update steps are done.
+        * Use {@link Phaser.Time#physicsElapsed physicsElapsed} as a basis of game/logic calculations instead.
         */
         elapsed: number;
 
@@ -32166,8 +32147,10 @@ declare module Phaser {
         * 
         * This value is corrected for game pauses and will be "about zero" after a game is resumed.
         * 
-        * _Note:_ This is updated once per game loop - even if multiple logic update steps are done.
-        * Use {@link Phaser.Timer#physicsTime physicsTime} as a basis of game/logic calculations instead.
+        * This is updated at each logic update, possibly more than once per game loop.
+        * If multiple logic update steps are done, the `elapsedMS` values will differ greatly.
+        * 
+        * Use {@link Phaser.Time#physicsElapsedMS physicsElapsedMS} as a basis of game/logic calculations instead.
         */
         elapsedMS: number;
 

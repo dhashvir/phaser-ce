@@ -6,7 +6,7 @@ Phaser CE is a fast, free, and fun open source HTML5 game framework. It uses a c
 
 Phaser v2 was built and maintained by [Photon Storm](http://www.photonstorm.com) and turned over to the community (as Phaser CE) in November 2016. [Phaser v3](http://phaser.io/phaser3) and [Phaser v4](https://github.com/phaserjs/phaser4) are in active development.
 
-The [current Phaser CE release is 2.15.0](https://github.com/photonstorm/phaser-ce/releases/tag/v2.15.0).
+The [current Phaser CE release is 2.16.0](https://github.com/photonstorm/phaser-ce/releases/tag/v2.16.0).
 
 - **Visit:** The [Phaser website](http://phaser.io) and follow on [Twitter](https://twitter.com/photonstorm) (#[phaserjs](https://twitter.com/hashtag/phaserjs))
 - **Learn:** [API Docs](https://photonstorm.github.io/phaser-ce/), [Support Forum][forum] and [StackOverflow](https://stackoverflow.com/questions/tagged/phaser-framework)
@@ -67,13 +67,7 @@ Phaser CE is [hosted on Github][phaser]. There are a number of ways to download 
 * Download just the build files: [phaser.js][get-js] and [phaser.min.js][get-minjs]
 * Checkout with [svn][clone-svn]
 
-### Bower / NPM
-
-Install via [bower](https://bower.io):
-
-```bash
-bower install phaser-ce
-```
+### NPM
 
 Install via [npm](https://www.npmjs.com):
 
@@ -85,27 +79,29 @@ Please see additional steps for [Browserify/CommonJS](#browserify) and [Webpack]
 
 ### CDN
 
-[Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce), a "super-fast CDN for developers". Include the following in your html:
+[Phaser CE is on jsDelivr](http://www.jsdelivr.com/projects/phaser-ce). Include the following in your html:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.15.0/build/phaser.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.16.0/build/phaser.js"></script>
 ```
 
 or the minified version:
 
 ```html
-<script src="//cdn.jsdelivr.net/npm/phaser-ce@2.15.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.16.0"></script>
 ```
 
-[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.15.0/build/custom/) are available too.
+[Custom builds](https://cdn.jsdelivr.net/npm/phaser-ce@2.16.0/build/custom/) are available too, e.g.,
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/phaser-ce@2.16.0/build/custom/phaser-arcade-physics.js"></script>
+```
 
 <a name="getting-started"></a>
 
 ## Getting Started
 
 Our [Getting Started Guide](http://phaser.io/tutorials/getting-started) will get you up to speed quickly: from [setting up a web server](https://phaser.io/tutorials/getting-started/part2) to picking an editor/IDE. After that read our [Making your first Game](http://phaser.io/tutorials/making-your-first-phaser-game) tutorial. Please work through this, **no matter what your development experience**, to learn how Phaser CE approaches things.
-
-The single biggest Phaser resource is the [Phaser web site](http://phaser.io/news). You'll find hundreds of tutorials, with new ones added every week. Subscribe to the [Phaser World](http://phaser.io/community/newsletter) newsletter for a weekly links round-up.
 
 Using **TypeScript**? See Phaser CE's [TypeScript definitions](https://github.com/photonstorm/phaser-ce/tree/master/typescript) and the [Using Phaser with TypeScript](https://phaser.io/tutorials/how-to-use-phaser-with-typescript).
 
@@ -312,10 +308,10 @@ All rights reserved.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-44006568-2/phaser/index)](https://github.com/igrigorik/ga-beacon)
 
-[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.15.0/phaser.js
-[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.15.0/phaser.min.js
-[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.15.0.zip
-[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.15.0.tar.gz
+[get-js]: https://github.com/photonstorm/phaser-ce/releases/download/v2.16.0/phaser.js
+[get-minjs]: https://github.com/photonstorm/phaser-ce/releases/download/v2.16.0/phaser.min.js
+[get-zip]: https://github.com/photonstorm/phaser-ce/archive/v2.16.0.zip
+[get-tgz]: https://github.com/photonstorm/phaser-ce/archive/v2.16.0.tar.gz
 [clone-http]: https://github.com/photonstorm/phaser.git
 [clone-ssh]: ssh://git@github.com:photonstorm/phaser.git
 [clone-svn]: https://github.com/photonstorm/phaser

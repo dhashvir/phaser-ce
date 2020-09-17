@@ -1,21 +1,51 @@
 # Change Log
 
-## Unreleased
+## Version 2.16.0 - 1 Jun 2020
+
+### API Changes
+
+- [Mouse wheel input](https://photonstorm.github.io/phaser-ce/Phaser.MouseWheel.html) is disabled by default. You can enable it by setting `{ mouseWheel: true }` in the game config.
+- [Phaser.StateManager#onStateChange](https://photonstorm.github.io/phaser-ce/Phaser.StateManager.html#onStateChange) is dispatched before [Phaser.Scene#init](https://photonstorm.github.io/phaser-ce/Phaser.State.html#init), rather than after.
 
 ### New Features
 
-- Phaser.BitmapData#getBase64()
-- Phaser.BitmapData#getImage()
-- Phaser.Game#maxUpdates
+- [Phaser.Camera#fadeIn](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#fadeIn) is a new camera effect. It does the opposite of [Phaser.Camera#fade](https://photonstorm.github.io/phaser-ce/Phaser.Camera.html#fade).
+- [Phaser.SoundManager#onStateChange](https://photonstorm.github.io/phaser-ce/Phaser.SoundManager.html#onStateChange) is a new signal, dispatched when the Web Audio context changes [state](https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/state), when using Web Audio.
+- [Phaser.Utils.Debug#state](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#state) shows the current game state.
 
 ### Updates
 
-- Phaser.RenderTexture#getBase64() has `type` and `encoderOptions` arguments.
-- Phaser.RenderTexture#getImage() has `type`, `encoderOptions`, `onLoadCallback`, and `onErrorCallback` arguments.
+- The Web Audio context is resumed automatically when resuming or refocusing the game (#667).
 
 ### Thanks
 
-@samme
+@samme, @SBCGames
+
+## Version 2.15.1 - 15 May 2020
+
+### New Features
+
+- [Phaser.BitmapData#getBase64()](https://photonstorm.github.io/phaser-ce/Phaser.BitmapData.html#getBase64)
+- [Phaser.BitmapData#getImage()](https://photonstorm.github.io/phaser-ce/Phaser.BitmapData.html#getImage)
+- [Phaser.Game#maxUpdates](https://photonstorm.github.io/phaser-ce/Phaser.Game.html#maxUpdates)
+- [Phaser.MSPointer#pointerCancelCallback](https://photonstorm.github.io/phaser-ce/Phaser.MSPointer.html#pointerCancelCallback)
+- There is a new data cache to let you store arbitrary data throughout the game. The new methods are [Phaser.Cache#addData()](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#addData), [Phaser.Cache#checkDataKey()](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#checkDataKey), [Phaser.Cache#getData()](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#getData), and [Phaser.Cache#removeData()](https://photonstorm.github.io/phaser-ce/Phaser.Cache.html#removeData). You can use them from `this.cache` in a scene or `game.cache`.
+- [Phaser.Utils.Debug#gameInfo()](https://photonstorm.github.io/phaser-ce/Phaser.Utils.Debug.html#gameInfo)
+
+### Updates
+
+- [Phaser.RenderTexture#getBase64()](https://photonstorm.github.io/phaser-ce/Phaser.RenderTexture.html#getBase64) has `type` and `encoderOptions` arguments.
+- [Phaser.RenderTexture#getImage()](https://photonstorm.github.io/phaser-ce/Phaser.RenderTexture.html#getImage) has `type`, `encoderOptions`, `onLoadCallback`, and `onErrorCallback` arguments.
+- [Phaser.Tilemap#searchTileIndex()](https://photonstorm.github.io/phaser-ce/Phaser.Tilemap.html#searchTileIndex) has an `all` argument, returning all matching tiles.
+
+### Bug Fixes
+
+- Input pointers are stopped for the 'pointercancel' event. This should prevent lost/frozen pointers after OS gestures (#663).
+- Destroying the game during loading does not cause an error when loader completes (#666).
+
+### Thanks
+
+@jf-m, @samme
 
 ## Version 2.15.0 - 6 Mar 2020
 
