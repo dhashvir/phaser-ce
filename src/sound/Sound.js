@@ -1082,6 +1082,11 @@ Phaser.Sound.prototype = {
 
     _createSourceAndConnect: function ()
     {
+        // On iOS if device goes to sleep the loop timers goes off and sounds can still be playing, which cause duplicate sounds playing. 
+        // This stops that
+        if (this._sound){
+            this._stopSourceAndDisconnect();
+        }
         this._sound = this.context.createBufferSource();
         this._sound.connect(this.externalNode || this.gainNode);
         this._buffer = this.game.cache.getSoundData(this.key);
